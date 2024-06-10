@@ -24,6 +24,12 @@ struct ContentView: View {
                 Button("Bedbound", action: bedBound)
             }.fixedSize()
             
+            Menu("Activity Level"){
+                Button("Normal, No disease", action: fullAmbu)
+                Button("Limited, Some disease", action: reduAmbu)
+                Button("Can't work, Significant disease", action: veryAmbu )
+                Button("", action: bedBound)
+            }.fixedSize()
             Button(action: {
               // Handle sign-in action here
               print("Sign In button tapped!")
