@@ -14,10 +14,11 @@ struct ContentView: View {
     @State private var activityScore: Int = 1
     var body: some View {
         VStack {
-            Image(systemName: "globe")
+            Image(systemName: "heart.text.square")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
             Text("Palliative Performance Scale")
+                .font(.title)
             
             Menu("Ambulation") {
                             Button(action: { ambuScore(score: 1) }) {
