@@ -7,9 +7,11 @@
 
 import SwiftUI
 
-var ambuScore = 0
+
 
 struct ContentView: View {
+    @State private var ambulationScore: Int = 1
+    @State private var activityScore: Int = 1
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -18,18 +20,39 @@ struct ContentView: View {
             Text("Palliative Performance Scale")
             
             Menu("Ambulation") {
-                Button("Full ambulation", action: fullAmbu)
-                Button("Reduced ambulation", action: reduAmbu)
-                Button("Very reduced ambulation", action: veryAmbu)
-                Button("Bedbound", action: bedBound)
-            }.fixedSize()
-            
-            Menu("Activity Level"){
-                Button("Normal, No disease", action: fullAmbu)
-                Button("Limited, Some disease", action: reduAmbu)
-                Button("Can't work, Significant disease", action: veryAmbu )
-                Button("", action: bedBound)
-            }.fixedSize()
+                            Button(action: { ambuScore(score: 1) }) {
+                                Text("Full ambulation")
+                            }
+                            Button(action: { ambuScore(score: 2) }) {
+                                Text("Reduced ambulation")
+                            }
+                            Button(action: { ambuScore(score: 3) }) {
+                                Text("Very reduced ambulation")
+                            }
+                            Button(action: { ambuScore(score: 4) }) {
+                                Text("Bedbound")
+                            }
+                        }
+                        .fixedSize()
+            Menu("Activity Level") {
+                            Button(action: { activityLevel(score: 1) }) {
+                                Text("Normal, No disease")
+                            }
+                            Button(action: { activityLevel(score: 2) }) {
+                                Text("Limited, Some disease")
+                            }
+                            Button(action: { activityLevel(score: 3) }) {
+                                Text("Can't work, Significant disease")
+                            }
+                            Button(action: { activityLevel(score: 4) }) {
+                                Text("Can't do hobbies, Severe disease")
+                            }
+                            Button(action: {activityLevel(score: 5)}) {
+                                Text("Bedbound")
+                            }
+                        }
+                        .fixedSize()
+
             Button(action: {
               // Handle sign-in action here
               print("Sign In button tapped!")
@@ -40,32 +63,23 @@ struct ContentView: View {
             }
             
             Button(action: {
-                print("Button tapped.")
+                print("Tapped")
             }, label: {
-                /*@START_MENU_TOKEN@*/Text("Button")/*@END_MENU_TOKEN@*/
+                Text("Calculate Score")
             })
             
-
-
         }
         .padding()
     }
-    func fullAmbu() {
+    func ambuScore(score: Int) {
         print("Full ambulation")
-        ambuScore = 1
+        ambulationScore = score
         }
-    func reduAmbu() {
+    func activityLevel(score: Int) {
         print("Reduced ambulation")
-        ambuScore = 2
+        activityScore = score
         }
-    func veryAmbu() {
-        print("Very reduced ambulation or partially bedbound")
-        ambuScore = 3
-        }
-    func bedBound() {
-        print("Bed bound")
-        ambuScore = 4
-    }
+
     
     func ppsCalc() {
         
